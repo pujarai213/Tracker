@@ -2,7 +2,6 @@ import { useState } from "react";
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 
-
 const Home = () => {
   let [tasks, setTasks] = useState([]);
 
@@ -23,10 +22,16 @@ const Home = () => {
     );
   };
 
+  const deleteTask = (id) => {
+    setTasks((prevTasks) => 
+        prevTasks.filter((task) => task.id !== id)
+    );
+  };
+
   return (
     <>
       <TaskForm onAddTask={addTask} />
-      <TaskList tasks={tasks} onToggle={toggleTask}/>
+      <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask}/>
     </>
   );
 };
